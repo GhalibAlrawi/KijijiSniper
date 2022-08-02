@@ -1,0 +1,8 @@
+﻿.appdata/auth.json
+devDataFiles/
+bin/
+obj/
+*.csprog
+*.
+requests(dev)/
+notification.mp3
