@@ -245,7 +245,14 @@ namespace KijijiSniper {
 					}
 
 					Console.WriteLine($"Waiting {TimeSpan.FromMinutes(opts.TimeIntervalMins).ToString()}");
-					await Task.Delay(TimeSpan.FromMinutes(opts.TimeIntervalMins));
+					DateTime nextRepost = DateTime.Now + TimeSpan.FromMinutes(opts.TimeIntervalMins);
+					
+					while (true) {
+						await Task.Delay(TimeSpan.FromMinutes(10));
+						if (DateTime.Now >= nextRepost) {
+							break;
+						}
+					}
 				}
 			}
 			static async Task<int> RunSaveAdAndReturnExitCode(SaveOptions opts) {
@@ -321,7 +328,7 @@ namespace KijijiSniper {
 					}
 
 					Console.WriteLine($"Waiting {TimeSpan.FromMinutes(opts.TimeIntervalMins).ToString()}");
-					await Task.Delay(TimeSpan.FromMinutes(opts.TimeIntervalMins));
+					await Task.Delay(TimeSpan.FromMinutes((opts.TimeIntervalMins)));
 				}
 
 				return 0;
